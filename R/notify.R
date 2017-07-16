@@ -51,13 +51,14 @@ notify <- function(patient, variable, value, email, comments) {
                 "value": "', email_template , '"
             }
         ]
-    }')
+    }', sep = "")
 
     res <- POST(
         "https://api.sendgrid.com/v3/mail/send",
         accept_json(),
         add_headers(
-            "Authorization" = paste("Bearer ", sendgrid_key),
+            "Authorization" = paste("Bearer", sendgrid_key),
             "Content-Type" = "application/json"),
-        body = data)
+        body = data,
+        verbose())
 }
