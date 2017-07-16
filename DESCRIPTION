@@ -9,3 +9,5 @@ Description: Given a patient ID, a variable name, its value and an email address
 License: MIT License
 Encoding: UTF-8
 LazyData: true
+Imports:
+    httr

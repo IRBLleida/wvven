@@ -13,7 +13,6 @@
 #   Test Package:              'Cmd + Shift + T'
 
 library(httr)
-library(jsonlite)
 
 notify <- function(patient, variable, value, email, comments) {
 
