@@ -1,0 +1,11 @@
+Package: wvven
+Type: Package
+Title: Wrong Variable Value Email Notification
+Version: 0.1.0
+Author: Jordi Vilaplana
+Maintainer: Jordi Vilaplana <jvilaplana@irblleida.cat>
+Description: Given a patient ID, a variable name, its value and an email address, send an email to the given address warning that
+    You need to define the SENDGRID_KEY and SENDGRID_TEMPLATE properties in your .Renviron file.
+License: MIT License
+Encoding: UTF-8
+LazyData: true
