@@ -12,9 +12,8 @@
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
-library(httr)
-
 notify <- function(patient, variable, value, email, comments) {
+    library(httr)
 
     email_template = paste('<dl><dt>ID pacient</dt><dd>', patient, '</dd><dt>Variable</dt><dd>', variable, '</dd><dt>Valor</dt><dd>', value, '</dd></dl><p>', comments, '</p>')
 
