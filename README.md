@@ -57,6 +57,10 @@ Five parameters should be provided to the `notify()` function:
  - *EMAIL*: The email address of the person that will be notified (usually the provider of the dataset).
  - *COMMENTS*: Any additional comments that should be included in the notification email.
 
+### Sample email result
+This is how a sample email looks like:
+![Sample email result](http://i.imgur.com/jVtHR7w.png)
+
 ## Meta
 - Please report [any issues or bugs](https://github.com/IRBLleida/wvven/issues).
 - License: MIT
