@@ -59,6 +59,5 @@ notify <- function(patient, variable, value, email, comments) {
         add_headers(
             "Authorization" = paste("Bearer", sendgrid_key),
             "Content-Type" = "application/json"),
-        body = data,
-        verbose())
+        body = data)
 }
