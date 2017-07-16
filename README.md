@@ -8,7 +8,13 @@ This package uses Sendgrid's template system to send a styled email, and therefo
 
 ## Installation
 
-The `devtools` package is needed to install this package directly from GitHub.
+The `devtools` package is needed to install this package directly from GitHub. If you don't have it installed, you can install it with:
+
+```
+install.packages("devtools")
+```
+
+Once it has been installed:
 
 ```
 library(devtools)
@@ -40,6 +46,13 @@ cat("SENDGRID_KEY=YOUR-API-KEY\nSENDGRID_TEMPLATE=TEMPLATE-ID",
     file=file.path(normalizePath("~/"), ".Renviron"),
     append=TRUE)
 ```
+
+You will need to restart your R session before using the package or R won't detect the newly created environment variables. If you are using R Studio, you can execute:
+
+```
+.rs.restartR()
+```
+
 
 ## Usage
 There is only one function, `notify()`, which will send the notification email.
