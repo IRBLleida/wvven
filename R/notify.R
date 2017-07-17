@@ -15,43 +15,43 @@
 notify <- function(patient, variable, value, email, comments) {
     library(httr)
 
-    email_template = paste('<dl><dt>ID pacient</dt><dd>', patient, '</dd><dt>Variable</dt><dd>', variable, '</dd><dt>Valor</dt><dd>', value, '</dd></dl><p>', comments, '</p>')
+    email_template = paste("<dl><dt>ID pacient</dt><dd>", patient, "</dd><dt>Variable</dt><dd>", variable, "</dd><dt>Valor</dt><dd>", value, '</dd></dl><p>', comments, "</p>")
 
-    sendgrid_key <- Sys.getenv('SENDGRID_KEY')
+    sendgrid_key <- Sys.getenv("SENDGRID_KEY")
     if (identical(sendgrid_key, "")) {
         stop("No s'ha trobat la variable d'entorn SENDGRID_KEY. Afegeix-la a l'arxiu .Renviron al directori home del teu usuari.",
              call. = FALSE)
     }
 
-    sendgrid_template <- Sys.getenv('SENDGRID_TEMPLATE')
+    sendgrid_template <- Sys.getenv("SENDGRID_TEMPLATE")
     if (identical(sendgrid_template, "")) {
         stop("No s'ha trobat la variable d'entorn SENDGRID_TEMPLATE Afegeix-la a l'arxiu .Renviron al directori home del teu usuari.",
              call. = FALSE)
     }
 
-    data = paste('{
-        "personalizations": [
+    data = paste("{
+        \"personalizations\": [
             {
-                "to": [
+                \"to\": [
                     {
-                        "email": "', email, '"
+                        \"email\": \"", email, "\"
                     }
                 ],
-                "subject": "[UBiostat] - Avís de valor de variable incorrecte",
-                "substitutions": {}
+                \"subject\": \"[UBiostat] - Avís de valor de variable incorrecte\",
+                \"substitutions\": {}
             }
         ],
-        "from": {
-            "email": "no-reply@irblleida.cat"
+        \"from\": {
+            \"email\": \"no-reply@irblleida.cat\"
         },
-        "template_id": "', sendgrid_template, '",
-        "content": [
+        \"template_id\": \"", sendgrid_template, "\",
+        \"content\": [
             {
-                "type": "text/html",
-                "value": "', email_template , '"
+                \"type\": \"text/html\",
+                \"value\": \"", email_template , "\"
             }
         ]
-    }', sep = "")
+    }", sep = "")
 
     res <- POST(
         "https://api.sendgrid.com/v3/mail/send",
@@ -60,4 +60,6 @@ notify <- function(patient, variable, value, email, comments) {
             "Authorization" = paste("Bearer", sendgrid_key),
             "Content-Type" = "application/json"),
         body = data)
+
+    return(status_code(res) == 202)
 }
