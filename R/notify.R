@@ -14,6 +14,7 @@
 
 notify <- function(patient, variable, value, email, comments) {
     library(httr)
+    library(stringi)
 
     email_template = paste("<dl><dt>ID pacient</dt><dd>", patient, "</dd><dt>Variable</dt><dd>", variable, "</dd><dt>Valor</dt><dd>", value, '</dd></dl><p>', comments, "</p>")
 
@@ -52,6 +53,7 @@ notify <- function(patient, variable, value, email, comments) {
             }
         ]
     }", sep = "")
+    data <- stri_encode(data, "", "UTF-8")
 
     res <- POST(
         "https://api.sendgrid.com/v3/mail/send",
